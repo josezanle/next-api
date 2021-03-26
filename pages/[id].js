@@ -1,33 +1,18 @@
-import Link from "next/link";
-
-export default function Home({ players }) {
+export default function player({ player }) {
   return (
     <div className="container">
       <div className="top">
         <button>
-          <Link href={"/agregarPlayer"}>
-            <a>Crear Player</a>
+          <Link href={"/"}>
+            <a>Volver</a>
           </Link>
         </button>
       </div>
-      {players &&
-        players.map((player) => {
-          return (
-            <Link
-              href={`/players/[id]`}
-              as={`/players/${player._id}`}
-              key={player._id}
-            >
-              <a className="card">
-                <h2>{player.nombre}</h2>
-                <h2>{player.apellido}</h2>
-                <h2>{player.edad}</h2>
-                <h2>{player.juego}</h2>
-              </a>
-            </Link>
-          );
-        })}
-
+      <div className="card">
+        <h1>Nombre: {player.nombre}</h1>
+        <h4>Apellido:{player.apellido}</h4>
+        <h4>Juego: {player.juego}</h4>
+      </div>
       <style jsx>{`
         .container {
           width: 100vw;
@@ -65,13 +50,15 @@ export default function Home({ players }) {
     </div>
   );
 }
-export async function getServerSideProps() {
-  const res = await fetch("https://joze-app.herokuapp.com/players");
-  const players = await res.json();
+export async function getServerSideProps({ params }) {
+  const res = await fetch(
+    `https://joze-app.herokuapp.com/players/${params.id}`
+  );
+  const player = await res.json();
 
   return {
     props: {
-      players,
+      player,
     },
   };
 }
