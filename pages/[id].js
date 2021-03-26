@@ -1,4 +1,18 @@
+import axios from "axios";
+import { useRouter } from "next/router";
+
+import Link from "next/link";
+
 export default function player({ player }) {
+  const { _id, apellido, nombre, edad, juego } = player;
+
+  const router = useRouter();
+
+  const eliminarPlayer = (_id) => {
+    axios.delete("https://joze-app.herokuapp.com/players/:id");
+    router.push("/");
+  };
+
   return (
     <div className="container">
       <div className="top">
@@ -9,9 +23,14 @@ export default function player({ player }) {
         </button>
       </div>
       <div className="card">
-        <h1>Nombre: {player.nombre}</h1>
-        <h4>Apellido:{player.apellido}</h4>
-        <h4>Juego: {player.juego}</h4>
+        <h1>Nombre: {nombre}</h1>
+        <h4>Apellido:{apellido}</h4>
+        <h4>Edad: {edad}</h4>
+        <h4>Juego: {juego}</h4>
+        <br />
+        <button type="button" onClick={() => eliminarPlayer(_id)}>
+          Borrar
+        </button>
       </div>
       <style jsx>{`
         .container {
@@ -35,7 +54,7 @@ export default function player({ player }) {
 
         .card {
           width: 300px;
-          height: 250px;
+          min-height: 300px;
           display: flex;
           justify-content: center;
           align-items: center;

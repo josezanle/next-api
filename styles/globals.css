@@ -22,4 +22,5 @@ button {
   border-radius: 0.5em;
   margin: 0.5em;
   color: white;
+  cursor: pointer;
 }

@@ -13,11 +13,7 @@ export default function Home({ players }) {
       {players &&
         players.map((player) => {
           return (
-            <Link
-              href={`/players/[id]`}
-              as={`/players/${player._id}`}
-              key={player._id}
-            >
+            <Link href={`/[id]`} as={`/${player._id}`} key={player._id}>
               <a className="card">
                 <h2>{player.nombre}</h2>
                 <h2>{player.apellido}</h2>
