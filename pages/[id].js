@@ -28,7 +28,11 @@ export default function player({ player }) {
         <h4>Edad: {edad}</h4>
         <h4>Juego: {juego}</h4>
         <br />
-        <button type="button" onClick={() => eliminarPlayer(_id)}>
+        <button
+          type="button"
+          className="coral"
+          onClick={() => eliminarPlayer(_id)}
+        >
           Borrar
         </button>
       </div>
@@ -64,6 +68,9 @@ export default function player({ player }) {
           border-radius: 1em;
           margin: 0.5em;
           padding: 0.5em;
+        }
+        .coral {
+          background: coral;
         }
       `}</style>
     </div>
