@@ -6,13 +6,14 @@ import Link from "next/link";
 export default function player({ player }) {
   const { _id, apellido, nombre, edad, juego } = player;
 
+  // router para redirigir al "/" despues de eliminar
   const router = useRouter();
 
-  const eliminarPlayer = (_id) => {
-    axios.delete("https://joze-app.herokuapp.com/players/:id");
+  // el _id proviene de mongo db,elimina un player especifico
+  const eliminarPlayer = async (_id) => {
+    await axios.delete("https://joze-app.herokuapp.com/players/:id");
     router.push("/");
   };
-
   return (
     <div className="container">
       <div className="top">
