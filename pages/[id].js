@@ -11,9 +11,15 @@ export default function player({ player }) {
 
   // el _id proviene de mongo db,elimina un player especifico
   const eliminarPlayer = async (_id) => {
-    await axios.delete("https://joze-app.herokuapp.com/players/:id");
+    // await axios.delete("https://joze-app.herokuapp.com/players/:id");
+    // router.push("/");
+    await fetch(`https://joze-app.herokuapp.com/players/:id`, {
+      method: "DELETE",
+    });
+
     router.push("/");
   };
+
   return (
     <div className="container">
       <div className="top">
