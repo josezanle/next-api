@@ -1,7 +1,7 @@
-import axios from "axios";
 import { useRouter } from "next/router";
 
 import Link from "next/link";
+import api from "../utils/axios";
 
 export default function player({ player }) {
   const { _id, apellido, nombre, edad, juego } = player;
@@ -13,8 +13,9 @@ export default function player({ player }) {
   const eliminarPlayer = async (_id) => {
     // await axios.delete("https://joze-app.herokuapp.com/players/:id");
     // router.push("/");
-    await fetch(`https://joze-app.herokuapp.com/players/:id`, {
-      method: "DELETE",
+
+    await fetch(api, {
+      method: "delete",
     });
 
     router.push("/");
